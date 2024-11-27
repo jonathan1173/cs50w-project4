@@ -17,20 +17,35 @@
 
 {% block body %}
     {% if user.is_authenticated %}
-        <br>
-        <div class="w-75 mx-auto" id="NewPostContainer">
-            <h5>New Post</h5>
-            <form method="POST" id="NewPostForm">
-                {% csrf_token %}
-                <div class="form-group">
-                    <textarea class="form-control" placeholder="Write your new post" rows="3" id="NewPostText"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary" id="NewPostSubmit">Post</button>
-            </form>
+        <div class="card border-0 shadow-sm mb-4">
+            <div class="card-body p-4">
+                <h6 class="mb-3">Share something</h6>
+                <form method="POST" id="NewPostForm">
+                    {% csrf_token %}
+                    <div class="form-group mb-3">
+                        <textarea 
+                            class="form-control border-0 bg-light" 
+                            placeholder="What's on your mind?" 
+                            rows="3" 
+                            id="NewPostText"
+                            style="resize: none;"
+                        ></textarea>
+                    </div>
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-sm btn-dark px-4" id="NewPostSubmit">
+                            Post
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     {% endif %}
-    <br>
-    <div class="w-75 mx-auto" id="AllPostsContainer"></div>
-    <br> 
-    <div class="w-75 mx-auto" id="AllPostsPaginationContainer"></div>
+
+    <div id="AllPostsContainer">
+        <!-- Posts will be loaded here -->
+    </div>
+
+    <nav class="my-4" id="AllPostsPaginationContainer">
+        <!-- Pagination will be loaded here -->
+    </nav>
 {% endblock %}

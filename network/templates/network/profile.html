@@ -18,19 +18,35 @@
 {% endblock %}
 
 {% block body %}
-    <br>
-    <div class="w-75 mx-auto">
-        <h5 id="ProfileUsernameContainer">
-            @{{ requested_user.username }} 
-        </h5>
-        <h6 id="ProfileFollowersContainer"></h6>
-        {% if user != requested_user and user.is_authenticated %}
-            {% csrf_token %}
-            <button type="button" class="btn btn-sm btn-primary" id="ProfileFollowButton"></button> 
-        {% endif %}
+    <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body p-4">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+                <div>
+                    <h5 class="mb-1" id="ProfileUsernameContainer">
+                        @{{ requested_user.username }}
+                    </h5>
+                    <div class="text-muted" id="ProfileFollowersContainer">
+                        <!-- Followers count will be loaded here -->
+                    </div>
+                </div>
+                {% if user != requested_user and user.is_authenticated %}
+                    {% csrf_token %}
+                    <button 
+                        type="button" 
+                        class="btn btn-sm btn-outline-dark px-4" 
+                        id="ProfileFollowButton">
+                        <!-- Follow/Unfollow text will be loaded here -->
+                    </button>
+                {% endif %}
+            </div>
+        </div>
     </div>
-    <br>
-    <div class="w-75 mx-auto" id="ProfilePostsContainer"></div>
-    <br> 
-    <div class="w-75 mx-auto" id="ProfilePaginationContainer"></div>
+
+    <div id="ProfilePostsContainer">
+        <!-- Posts will be loaded here -->
+    </div>
+
+    <nav class="my-4" id="ProfilePaginationContainer">
+        <!-- Pagination will be loaded here -->
+    </nav>
 {% endblock %}
